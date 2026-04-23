@@ -1,1 +1,14 @@
-
+{
+  "version": "0.1.0",
+  "notes": "Первая тестовая сборка",
+  "files": [
+    {
+      "name": "GeoHub.exe",
+      "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/v0.1.0/GeoHub.exe"
+    },
+    {
+      "name": "GeoHub.pck",
+      "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/v0.1.0/GeoHub.pck"
+    }
+  ]
+}

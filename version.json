@@ -1,16 +1,21 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "files": [
     {
       "name": "GeoHub.exe",
-      "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/0.0.2/GeoHub.exe"
+      "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/0.0.3/GeoHub.exe"
     },
     {
       "name": "GeoHub.pck",
-      "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/0.0.2/GeoHub.pck"
+      "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/0.0.3/GeoHub.pck"
     }
   ],
   "changelog": [
+    {
+      "version": "0.0.3",
+      "date": "2026-04-25",
+      "notes": ["test open"]
+    },
     {
       "version": "0.0.2",
       "date": "2026-04-25",

@@ -1,22 +1,25 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "files": [
     {
       "name": "GeoHub.exe",
-      "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/0.0.1/GeoHub.exe"
+      "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/0.0.2/GeoHub.exe"
     },
     {
       "name": "GeoHub.pck",
-      "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/0.0.1/GeoHub.pck"
+      "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/0.0.2/GeoHub.pck"
     }
   ],
   "changelog": [
     {
+      "version": "0.0.2",
+      "date": "2026-04-25",
+      "notes": ["карта и сейвы"]
+    },
+    {
       "version": "0.0.1",
       "date": "2026-04-25",
-      "notes": [
-        "Ну стрельба вроде норм"
-      ]
+      "notes": ["Ну стрельба вроде норм"]
     }
   ]
 }

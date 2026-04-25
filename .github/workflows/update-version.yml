@@ -25,7 +25,6 @@
           assets = [a for a in out.strip().splitlines() if a]
           files  = [{"name": a, "url": f"{base}/{a}"} for a in assets]
 
-          # Читаем старый changelog если есть
           try:
               with open("version.json", encoding="utf-8") as f:
                   old = json.load(f)
@@ -33,68 +32,11 @@
           except Exception:
               changelog = []
 
-          # Убираем дубль если этот релиз уже есть
           changelog = [e for e in changelog if str(e.get("version", "")) != ver]
-
-          # Новая запись первой
           changelog.insert(0, {"version": ver, "date": date, "notes": notes})
 
           doc = {"version": ver, "files": files, "changelog": changelog}
           with open("version.json", "w", encoding="utf-8") as f:
               json.dump(doc, f, ensure_ascii=False, indent=2)
           print(json.dumps(doc, ensure_ascii=False, indent=2))
-          EOFname: Update version.json
-
-on:
-  release:
-    types: [published]
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main   # ← явно чекаутим ветку, не тег
-
-      - name: Generate version.json
-        env:
-          GH_TOKEN:     ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_TAG:  ${{ github.event.release.tag_name }}
-          RELEASE_BODY: ${{ github.event.release.body }}
-          GH_REPO:      ${{ github.repository }}
-        run: |
-          python3 - << 'EOF'
-          import json, subprocess, os
-
-          tag   = os.environ["RELEASE_TAG"]
-          ver   = tag.lstrip("v")
-          body  = os.environ.get("RELEASE_BODY", "").strip()
-          notes = [line.lstrip("- ").strip() for line in body.splitlines() if line.strip().startswith("-")]
-          if not notes:
-              notes = [body] if body else [ver]
-          repo  = os.environ["GH_REPO"]
-          base  = f"https://github.com/{repo}/releases/download/{tag}"
-
-          out = subprocess.check_output(
-              ["gh", "release", "view", tag, "--json", "assets", "-q", ".assets[].name"],
-              text=True
-          )
-          assets = [a for a in out.strip().splitlines() if a]
-          files  = [{"name": a, "url": f"{base}/{a}"} for a in assets]
-
-          doc = {"version": ver, "notes": notes, "files": files}
-          with open("version.json", "w", encoding="utf-8") as f:
-              json.dump(doc, f, ensure_ascii=False, indent=2)
-          print(json.dumps(doc, ensure_ascii=False, indent=2))
           EOF
-
-      - name: Commit and push
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add version.json
-          git diff --staged --quiet || git commit -m "release: ${{ github.event.release.tag_name }}"
-          git push origin main

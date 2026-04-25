@@ -9,5 +9,14 @@
       "name": "GeoHub.pck",
       "url": "https://github.com/TwiceAtWeek/GeoHubDist/releases/download/0.0.1/GeoHub.pck"
     }
+  ],
+  "changelog": [
+    {
+      "version": "0.0.1",
+      "date": "2026-04-25",
+      "notes": [
+        "Ну стрельба вроде норм"
+      ]
+    }
   ]
 }
